@@ -1,30 +1,17 @@
 //
-//  Day1.swift
+//  File.swift
 //  
 //
 //  Created by Andrew Carter on 12/4/22.
 //
 
 import Foundation
-import ArgumentParser
 
-public struct Day1: ParsableCommand {
-    
-    @Argument(help: "Input file path.") var input: String
-    
-    static public var configuration = CommandConfiguration(
-        commandName: "day1",
-        abstract: "test",
-        subcommands: [])
-    
-    public init() {
-        
-    }
-
-    public func run() throws {
-        let inputString = try String(contentsOfFile: input)
-        let inputLines = inputString.components(separatedBy: "\n")
-        let totals = inputLines.reduce([0]) { partialResult, line in
+public struct Day1Solution {
+ 
+    func solve(for inputText: String) throws -> Int {
+        let inputLines = inputText.components(separatedBy: "\n")
+        let totals = try inputLines.reduce([0]) { partialResult, line in
             var partialResult = partialResult
             
             switch (line, Int(line), partialResult.last) {
@@ -39,33 +26,16 @@ public struct Day1: ParsableCommand {
                 
                 // Only happens if input file has an invalid format
             default:
-                let errorMessage = """
-Invalid input format. Expecting:
-1000
-2000
-3000
-
-4000
-
-5000
-6000
-
-7000
-8000
-9000
-
-10000
-"""
-                fatalError(errorMessage)
+                throw Advent22Error.invalidInputText
             }
         }
         
         let sortedTotals = totals.sorted(by: >)
         guard let largestTotal = sortedTotals.first else {
-            fatalError("Expecting at least one numeric string in input file.")
+            throw Advent22Error.invalidInputText
         }
         
-        print("The elf with the most calories is carrying \(largestTotal) calories.")
+        return largestTotal
     }
     
 }
