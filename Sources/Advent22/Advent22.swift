@@ -14,7 +14,7 @@ public struct Advent22: ParsableCommand {
     }
 
     public func run() throws {
-        print("run")
+        print(Advent22.helpMessage())
     }
 
 }
