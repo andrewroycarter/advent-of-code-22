@@ -18,7 +18,7 @@ final class Day1SolutionTests: XCTestCase {
 
 1
 """
-        let solution = Day1Solution()
+        let solution = Day1Solution(shouldCalculateTopThree: false)
         XCTAssertEqual(30, try solution.solve(for: inputText))
     }
     
@@ -29,7 +29,42 @@ final class Day1SolutionTests: XCTestCase {
 f
 1
 """
-        let solution = Day1Solution()
+        let solution = Day1Solution(shouldCalculateTopThree: false)
+        XCTAssertThrowsError(try solution.solve(for: inputText))
+    }
+    
+    func testValidKnownSolutionTop3() {
+        let inputText = """
+1
+1
+
+1
+1
+1
+
+1
+1
+1
+1
+
+1
+"""
+        
+        let solution = Day1Solution(shouldCalculateTopThree: true)
+        XCTAssertEqual(9, try solution.solve(for: inputText))
+    }
+    
+    func testTop3FailWithLessThanThreeElves() {
+        let inputText = """
+1
+1
+
+1
+1
+1
+"""
+
+        let solution = Day1Solution(shouldCalculateTopThree: true)
         XCTAssertThrowsError(try solution.solve(for: inputText))
     }
         

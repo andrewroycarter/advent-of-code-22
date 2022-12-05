@@ -11,6 +11,7 @@ import ArgumentParser
 public struct Day1: ParsableCommand {
     
     @Argument(help: "Input file path.") var input: String
+    @Flag(help: "Calculates the total of the top three elves.") var top3 = false
     
     static public var configuration = CommandConfiguration(
         commandName: "day1",
@@ -23,9 +24,14 @@ public struct Day1: ParsableCommand {
 
     public func run() throws {
         let inputText = try String(contentsOfFile: input)
-        let largestTotal = try Day1Solution().solve(for: inputText)
+        let solution = Day1Solution(shouldCalculateTopThree: top3)
+        let value = try solution.solve(for: inputText)
         
-        print("The elf with the most calories is carrying \(largestTotal) calories.")
+        if top3 {
+            print("The top 3 elves are carrying \(value) calories.")
+        } else {
+            print("The elf with the most calories is carrying \(value) calories.")
+        }
     }
     
 }
