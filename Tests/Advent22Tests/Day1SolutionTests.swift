@@ -68,4 +68,29 @@ f
         XCTAssertThrowsError(try solution.solve(for: inputText))
     }
         
+    func testProblemOneSolution() throws {
+        let inputTextURL = try XCTUnwrap(
+            Bundle
+                .module
+                .url(forResource: "day1",
+                     withExtension: "txt")
+        )
+    
+        let inputText = try String(contentsOf: inputTextURL)
+        let solution = Day1Solution(shouldCalculateTopThree: false)
+        XCTAssertEqual(try solution.solve(for: inputText), 70369)
+    }
+    
+    func testProblemTwoSolution() throws {
+        let inputTextURL = try XCTUnwrap(
+            Bundle
+                .module
+                .url(forResource: "day1",
+                     withExtension: "txt")
+        )
+    
+        let inputText = try String(contentsOf: inputTextURL)
+        let solution = Day1Solution(shouldCalculateTopThree: true)
+        XCTAssertEqual(try solution.solve(for: inputText), 203002)
+    }
 }

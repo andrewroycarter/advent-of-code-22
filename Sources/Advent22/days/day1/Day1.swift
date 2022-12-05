@@ -13,10 +13,7 @@ public struct Day1: ParsableCommand {
     @Argument(help: "Input file path.") var input: String
     @Flag(help: "Calculates the total of the top three elves.") var top3 = false
     
-    static public var configuration = CommandConfiguration(
-        commandName: "day1",
-        abstract: "test",
-        subcommands: [])
+    static public var configuration = CommandConfiguration(commandName: "day1")
     
     public init() {
         

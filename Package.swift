@@ -16,6 +16,10 @@ let package = Package(
             dependencies: [.product(name: "ArgumentParser", package: "swift-argument-parser")]),
         .testTarget(
             name: "Advent22Tests",
-            dependencies: ["Advent22"]),
+            dependencies: ["Advent22"],
+            resources: [
+                .copy("Inputs/day1.txt"),
+                .copy("Inputs/day2.txt"),
+            ]),
     ]
 )
