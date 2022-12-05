@@ -1,3 +1,3 @@
 # Advent22
 
-A description of this package.
+Working through https://adventofcode.com/2022 by making a swift command line tool.
